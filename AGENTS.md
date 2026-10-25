@@ -9,3 +9,6 @@
 - Run lint, format:check and build before committing code. Add relevant tests as features arrive.
 - Update docs/progress.md after each session. Record blockers as well as completed work.
 - Product copy is in English. Planning notes can be in Russian.
+
+- Keep the UI simple: system fonts, standard controls, plain layouts. No decorative graphics or marketing copy.
+- Do not use Vercel unless explicitly requested again.

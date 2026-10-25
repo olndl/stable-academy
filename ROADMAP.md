@@ -4,7 +4,7 @@
 
 ## Неделя 1
 
-- [ ] День 1 — Vite + React + TypeScript, ESLint, Prettier, layout, роутинг и деплой на Vercel.
+- [ ] День 1 — Vite + React + TypeScript, ESLint, Prettier, layout и роутинг. Формат мобильного приложения уточняется; Vercel не используем.
 - [ ] День 2 — типы Course, Lesson, Trainer, данные курсов и MSW.
 - [ ] День 3 — каталог через TanStack Query, карточки, загрузка и ошибки.
 - [ ] День 4 — поиск, фильтры по дисциплине и уровню в URL.

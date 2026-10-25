@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
-import { BrandMark } from './BrandMark';
 
 const navigation = [
-  { to: '/', label: 'Overview' },
+  { to: '/', label: 'Home' },
   { to: '/courses', label: 'Courses' },
   { to: '/my-learning', label: 'My learning' },
-  { to: '/diary', label: 'Training diary' },
+  { to: '/diary', label: 'Diary' },
   { to: '/statistics', label: 'Statistics' },
 ];
 
@@ -31,13 +30,8 @@ export function Layout() {
         Skip to content
       </a>
       <header className="site-header">
-        <Link className="brand" to="/" aria-label="Stable Academy home">
-          <span className="brand-mark">
-            <BrandMark />
-          </span>
-          <span>
-            stable<span className="brand-subtitle">ACADEMY</span>
-          </span>
+        <Link className="brand" to="/">
+          Stable Academy
         </Link>
         <nav aria-label="Main navigation">
           {navigation.map(({ to, label }) => (
@@ -46,17 +40,10 @@ export function Layout() {
             </NavLink>
           ))}
         </nav>
-        <span className="preview-label">
-          <span /> Early preview
-        </span>
       </header>
       <main id="main-content" ref={mainRef} tabIndex={-1}>
         <Outlet />
       </main>
-      <footer className="site-footer">
-        <span>Stable Academy</span>
-        <span>For the love of learning. And horses.</span>
-      </footer>
     </div>
   );
 }
