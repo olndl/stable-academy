@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Stable Academy",
+    "slug": "stable-academy",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "stable-academy",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

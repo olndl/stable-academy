@@ -1,0 +1,20 @@
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
+import prettier from 'eslint-config-prettier';
+
+export default tseslint.config(
+  { ignores: ['dist', 'node_modules', '.expo', 'expo-env.d.ts'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: { globals: { ...globals.es2021, __DEV__: 'readonly' } },
+    plugins: { 'react-hooks': reactHooks },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+    },
+  },
+  prettier,
+);
