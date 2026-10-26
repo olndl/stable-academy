@@ -16,5 +16,6 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
     },
   },
+  { files: ['tests/**/*.mjs'], languageOptions: { globals: globals.node } },
   prettier,
 );
