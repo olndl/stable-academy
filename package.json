@@ -9,23 +9,26 @@
     "expo-linking": "~57.0.13",
     "expo-router": "~57.0.29",
     "expo-status-bar": "~57.0.1",
+    "msw": "2.15.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
-    "react-native-web": "~0.21.0"
+    "react-native-web": "~0.21.0",
+    "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
-    "typescript": "~6.0.3",
-    "eslint": "^10.13.0",
     "@eslint/js": "^10.0.1",
-    "typescript-eslint": "^8.72.0",
-    "globals": "^17.13.0",
+    "@types/react": "~19.2.2",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
     "prettier": "^3.9.10",
-    "eslint-config-prettier": "^10.1.8"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.0"
   },
   "scripts": {
     "start": "expo start",
@@ -36,10 +39,12 @@
     "typecheck": "tsc --noEmit",
     "build": "expo export --platform all",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:api": "node --experimental-strip-types --test tests/course-api.test.mjs && node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-api.test.mjs"
   },
   "private": true,
   "engines": {
     "node": ">=22.13.0"
-  }
+  },
+  "type": "module"
 }
