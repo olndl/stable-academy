@@ -12,3 +12,6 @@
 - Update docs/progress.md after each session. Record verification limits honestly.
 - Product copy is in English. Planning notes can be in Russian.
 - Browser preview is optional. Do not use Vercel or switch back to a web project.
+
+- Keep README.md to the project title until the final documentation stage. Do not expand it before then unless explicitly requested.
+- Prepare the project presentation at the end, after the main features are finished.

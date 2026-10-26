@@ -26,6 +26,8 @@
 
 Следующий шаг: день 2 — типы Course, Lesson, Trainer, данные курсов и моковый API.
 
+README пока оставлен только с названием. Оформим его в конце, вместе с презентацией проекта.
+
 ## День 2 — 26 октября 2026
 
 Сделано:
@@ -43,4 +45,4 @@ MSW: пакет @msw/react-native из актуальной документац
 
 Видео пока null: стоковые ролики добавим вместе с плеером на день 7. Длительности уроков пока демонстрационные. Обложки: Pexels [17393032](https://www.pexels.com/photo/wild-horses-trotting-in-the-brown-pasture-17393032/), [7098068](https://www.pexels.com/photo/horses-running-on-grassy-field-in-countryside-7098068/), [14233053](https://www.pexels.com/photo/a-herd-of-horses-running-on-the-field-14233053/). Все три URL изображений ответили HTTP 200.
 
-Работа дня 2 находится в ветке feature/course-mock-api. README не менялся. PR #2 оставлен открытым. Каталог с карточками и TanStack Query — следующий, третий день.
+Работа дня 2 — PR #3. PR #2 с сокращением README влит. Каталог с карточками и TanStack Query — следующий, третий день.
