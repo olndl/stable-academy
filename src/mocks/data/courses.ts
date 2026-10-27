@@ -10,7 +10,6 @@ function lessons(
     title,
     description,
     durationSeconds,
-    // Stock videos will be selected when the player is added on day 7.
     videoUrl: null,
   }));
 }
