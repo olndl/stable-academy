@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "0.1.0",
   "dependencies": {
+    "@tanstack/react-query": "^5.105.0",
     "expo": "~58.0.19",
     "expo-constants": "~58.0.13",
     "expo-font": "~58.0.10",
@@ -40,7 +41,9 @@
     "build": "expo export --platform all",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:api": "node --experimental-strip-types --test tests/course-api.test.mjs && node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-api.test.mjs"
+    "test:api": "node --experimental-strip-types --test tests/course-api.test.mjs && node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-api.test.mjs",
+    "test:catalog": "node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-query.test.mjs",
+    "test": "npm run test:api && npm run test:catalog"
   },
   "private": true,
   "engines": {
