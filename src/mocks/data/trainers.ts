@@ -1,6 +1,5 @@
 import type { Trainer } from '../../types/course.ts';
 
-// All trainers and courses in the demo are fictional.
 export const trainers: Trainer[] = [
   {
     id: 'anna-weber',
