@@ -14,7 +14,7 @@ export function CourseCard({ course }: { course: Course }) {
         source={{ uri: course.imageUrl }}
         style={styles.image}
         accessible={false}
-        resizeMode="cover"
+        resizeMode="contain"
       />
       <View style={styles.body}>
         <Text style={styles.meta}>

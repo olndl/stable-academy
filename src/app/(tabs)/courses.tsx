@@ -1,25 +1,56 @@
 import { useQuery } from '@tanstack/react-query';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   ActivityIndicator,
   FlatList,
+  Keyboard,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { CatalogFilters } from '../../features/courses/CatalogFilters';
+import {
+  courseFilterParams,
+  filterCourses,
+  readCourseFilters,
+} from '../../features/courses/filters';
+import type { CourseFilters } from '../../features/courses/filters';
 import { CourseCard } from '../../features/courses/CourseCard';
 import { coursesQueryOptions } from '../../queries/courses';
 import { styles as shared } from '../../styles';
 
 export default function CoursesScreen() {
   const query = useQuery(coursesQueryOptions);
+  const params = useLocalSearchParams<{
+    q?: string | string[];
+    discipline?: string | string[];
+    level?: string | string[];
+  }>();
+  const router = useRouter();
+  const filters = readCourseFilters(params);
+  const courses = filterCourses(query.data ?? [], filters);
+  const activeFilters = Boolean(
+    filters.q || filters.discipline || filters.level,
+  );
+
+  function updateFilters(next: CourseFilters) {
+    router.setParams(courseFilterParams(next));
+  }
+
+  function resetFilters() {
+    Keyboard.dismiss();
+    updateFilters({ q: '', discipline: '', level: '' });
+  }
 
   return (
     <FlatList
       style={styles.screen}
       contentContainerStyle={styles.content}
       contentInsetAdjustmentBehavior="automatic"
-      data={query.data ?? []}
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
+      data={courses}
       keyExtractor={(course) => course.id}
       renderItem={({ item }) => <CourseCard course={item} />}
       ListHeaderComponent={
@@ -30,6 +61,16 @@ export default function CoursesScreen() {
           <Text style={shared.text}>
             Find something to work on with your horse.
           </Text>
+          <CatalogFilters
+            filters={filters}
+            onChange={updateFilters}
+            onReset={resetFilters}
+          />
+          {query.data && (
+            <Text accessibilityLiveRegion="polite" style={shared.text}>
+              {courses.length} {courses.length === 1 ? 'course' : 'courses'}
+            </Text>
+          )}
           {query.isRefetchError && (
             <Text accessibilityRole="alert" style={shared.text}>
               Could not refresh courses. Showing previous results.
@@ -47,7 +88,7 @@ export default function CoursesScreen() {
               />
               <Text style={shared.text}>Loading courses…</Text>
             </>
-          ) : query.isError ? (
+          ) : query.isLoadingError ? (
             <>
               <Text accessibilityRole="alert" style={shared.text}>
                 Could not load courses. Please try again.
@@ -61,7 +102,22 @@ export default function CoursesScreen() {
               </Pressable>
             </>
           ) : (
-            <Text style={shared.text}>No courses yet.</Text>
+            <>
+              <Text style={shared.text}>
+                {activeFilters
+                  ? 'No courses match your filters.'
+                  : 'No courses yet.'}
+              </Text>
+              {activeFilters && (
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={resetFilters}
+                  style={styles.button}
+                >
+                  <Text style={styles.buttonLabel}>Show all courses</Text>
+                </Pressable>
+              )}
+            </>
           )}
         </View>
       }

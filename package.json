@@ -43,7 +43,8 @@
     "format:check": "prettier --check .",
     "test:api": "node --experimental-strip-types --test tests/course-api.test.mjs && node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-api.test.mjs",
     "test:catalog": "node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-query.test.mjs",
-    "test": "npm run test:api && npm run test:catalog"
+    "test": "npm run test:api && npm run test:catalog && npm run test:filters",
+    "test:filters": "node --experimental-strip-types --test tests/course-filters.test.mjs"
   },
   "private": true,
   "engines": {
