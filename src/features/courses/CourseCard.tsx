@@ -1,3 +1,4 @@
+import { AppLink } from '../../components/AppLink';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { Course } from '../../types/course';
 import { disciplineLabels, levelLabels } from './labels';
@@ -28,6 +29,14 @@ export function CourseCard({ course }: { course: Course }) {
         <Text style={styles.meta}>
           {course.lessons.length} lessons · {minutes} min
         </Text>
+        <AppLink
+          href={{
+            pathname: '/courses/[courseId]',
+            params: { courseId: course.id },
+          }}
+          label="View course"
+          accessibilityLabel={`View course: ${course.title}`}
+        />
       </View>
     </View>
   );

@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { isCancelledError } from '@tanstack/react-query';
 import { createQueryClient } from '../src/queries/client.ts';
-import { coursesQueryOptions } from '../src/queries/courses.ts';
+import {
+  courseQueryOptions,
+  coursesQueryOptions,
+} from '../src/queries/courses.ts';
 
 test('catalog loads through the API and reuses fresh cached data', async (context) => {
   const client = createQueryClient();
@@ -56,4 +59,26 @@ test('cancelling a catalog query aborts its request', async (context) => {
   await rejected;
   assert.equal(signal.aborted, true);
   assert.equal(client.getQueryData(['courses']), undefined);
+});
+
+test('course details have separate cache entries and missing courses fail without retries', async (context) => {
+  const client = createQueryClient();
+  context.after(() => client.clear());
+  const first = await client.fetchQuery(courseQueryOptions('balanced-seat'));
+  const second = await client.fetchQuery(courseQueryOptions('first-poles'));
+  assert.notEqual(first.id, second.id);
+  assert.equal(first.lessons.length, 3);
+  let calls = 0;
+  const options = courseQueryOptions('missing');
+  await assert.rejects(
+    client.fetchQuery({
+      ...options,
+      queryFn: (query) => {
+        calls++;
+        return options.queryFn(query);
+      },
+    }),
+    (error) => error.status === 404,
+  );
+  assert.equal(calls, 1);
 });
