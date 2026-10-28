@@ -17,8 +17,7 @@ export default function HomeScreen() {
           Courses
         </Text>
         <Text style={styles.text}>
-          The first courses are being prepared. You’ll be able to save them and
-          track your progress here.
+          Browse courses in dressage, jumping, groundwork and horse care.
         </Text>
         <AppLink href="/courses" label="Browse courses" />
       </View>
