@@ -7,7 +7,13 @@ import {
 } from '../../store/learningSlice';
 import type { CourseStatus } from '../../store/learningSlice';
 
-export function CourseStatusControls({ courseId }: { courseId: string }) {
+export function CourseStatusControls({
+  courseId,
+  lessonIds,
+}: {
+  courseId: string;
+  lessonIds: string[];
+}) {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.learning.statuses[courseId]);
   return (
@@ -21,7 +27,11 @@ export function CourseStatusControls({ courseId }: { courseId: string }) {
             aria-pressed={selected === value}
             onPress={() =>
               dispatch(
-                setCourseStatus({ courseId, status: value as CourseStatus }),
+                setCourseStatus({
+                  courseId,
+                  status: value as CourseStatus,
+                  lessonIds,
+                }),
               )
             }
             style={[styles.button, selected === value && styles.selected]}

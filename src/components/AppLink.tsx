@@ -6,13 +6,17 @@ export function AppLink({
   href,
   label,
   accessibilityLabel = label,
+  replace = false,
+  dismissTo = false,
 }: {
   href: Href;
   label: string;
   accessibilityLabel?: string;
+  replace?: boolean;
+  dismissTo?: boolean;
 }) {
   return (
-    <Link href={href} asChild>
+    <Link href={href} replace={replace} dismissTo={dismissTo} asChild>
       <Pressable
         accessibilityRole="link"
         accessibilityLabel={accessibilityLabel}

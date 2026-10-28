@@ -1,3 +1,4 @@
+import { CourseProgress } from '../learning/CourseProgress';
 import { AppLink } from '../../components/AppLink';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { Course } from '../../types/course';
@@ -29,6 +30,7 @@ export function CourseCard({ course }: { course: Course }) {
         <Text style={styles.meta}>
           {course.lessons.length} lessons · {minutes} min
         </Text>
+        <CourseProgress course={course} />
         <AppLink
           href={{
             pathname: '/courses/[courseId]',

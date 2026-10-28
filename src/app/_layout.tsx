@@ -15,6 +15,10 @@ export default function RootLayout() {
             options={{ title: 'Course' }}
           />
           <Stack.Screen
+            name="lessons/[courseId]/[lessonId]"
+            options={{ title: 'Lesson' }}
+          />
+          <Stack.Screen
             name="+not-found"
             options={{ title: 'Page not found' }}
           />

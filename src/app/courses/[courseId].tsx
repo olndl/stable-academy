@@ -1,3 +1,6 @@
+import { useAppSelector } from '../../store/hooks';
+import { CourseProgress } from '../../features/learning/CourseProgress';
+import { formatTime } from '../../features/learning/progress';
 import { useQuery } from '@tanstack/react-query';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { Image, Text, View } from 'react-native';
@@ -16,6 +19,9 @@ export default function CourseScreen() {
     ? params.courseId[0]
     : params.courseId;
   const query = useQuery(courseQueryOptions(courseId ?? ''));
+  const completedIds = useAppSelector(
+    (state) => state.learning.progress[courseId ?? '']?.completedLessonIds,
+  );
 
   if (query.isPending)
     return <RequestNotice loading message="Loading course…" />;
@@ -53,7 +59,11 @@ export default function CourseScreen() {
         style={{ width: '100%', height: 200, backgroundColor: '#e5e5e5' }}
       />
       <Text style={styles.text}>{course.description}</Text>
-      <CourseStatusControls courseId={course.id} />
+      <CourseStatusControls
+        courseId={course.id}
+        lessonIds={course.lessons.map((lesson) => lesson.id)}
+      />
+      <CourseProgress course={course} />
       <View style={styles.panel}>
         <Text accessibilityRole="header" style={styles.subtitle}>
           Trainer: {course.trainer.name}
@@ -75,10 +85,20 @@ export default function CourseScreen() {
           </Text>
           <Text style={styles.text}>{lesson.description}</Text>
           <Text style={styles.text}>
-            {Math.ceil(lesson.durationSeconds / 60)} min
+            {formatTime(lesson.durationSeconds)} ·{' '}
+            {completedIds?.includes(lesson.id) ? 'Completed' : 'Not completed'}
           </Text>
+          <AppLink
+            href={{
+              pathname: '/lessons/[courseId]/[lessonId]',
+              params: { courseId: course.id, lessonId: lesson.id },
+            }}
+            label="Open lesson"
+            accessibilityLabel={`Open lesson: ${lesson.title}`}
+          />
         </View>
       ))}
+      <AppLink href="/courses" label="Back to courses" dismissTo />
     </Screen>
   );
 }

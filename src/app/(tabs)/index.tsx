@@ -1,3 +1,4 @@
+import { ContinueWatching } from '../../features/learning/ContinueWatching';
 import { Text, View } from 'react-native';
 import { AppLink } from '../../components/AppLink';
 import { Screen } from '../../components/Screen';
@@ -12,6 +13,7 @@ export default function HomeScreen() {
       <Text style={styles.text}>
         Riding courses and your training notes in one place.
       </Text>
+      <ContinueWatching />
       <View style={styles.panel}>
         <Text accessibilityRole="header" style={styles.subtitle}>
           Courses
