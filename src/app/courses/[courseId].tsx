@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { Image, Text, View } from 'react-native';
+import { CourseStatusControls } from '../../features/learning/CourseStatusControls';
 import { ApiError } from '../../api/request';
 import { AppLink } from '../../components/AppLink';
 import { RequestNotice } from '../../components/RequestNotice';
@@ -52,6 +53,7 @@ export default function CourseScreen() {
         style={{ width: '100%', height: 200, backgroundColor: '#e5e5e5' }}
       />
       <Text style={styles.text}>{course.description}</Text>
+      <CourseStatusControls courseId={course.id} />
       <View style={styles.panel}>
         <Text accessibilityRole="header" style={styles.subtitle}>
           Trainer: {course.trainer.name}
