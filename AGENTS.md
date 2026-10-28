@@ -4,7 +4,7 @@
 - Follow ROADMAP.md one day at a time. Don't implement later days unless requested.
 - Before starting, read docs/progress.md and check git status.
 - Use type/{short-name} for branches and commit messages: feature/, fix/, test/, docs/, chore/. Keep messages short, in English, without attribution trailers.
-- Use a pull request for each feature. Don't replace PRs with a local merge. Keep PR descriptions to one or two short sentences.
+- Use a pull request for each feature. Don't replace PRs with a local merge. Keep PR descriptions to one or two short, casual sentences. No formal template or long checklist.
 - Keep actual commit dates. Don't create future or backdated commits.
 - Keep the UI simple: system fonts, standard controls, plain layouts. No decorative graphics or marketing copy.
 - Run lint, format:check, typecheck and build before committing code. Add relevant tests as features arrive.
