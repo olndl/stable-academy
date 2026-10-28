@@ -14,6 +14,8 @@ export interface Lesson {
   description: string;
   durationSeconds: number;
   videoUrl: string | null;
+  videoSourceUrl?: `https://${string}`;
+  videoCredit?: string;
 }
 
 export interface Course {

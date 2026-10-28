@@ -1,3 +1,4 @@
+import { ContinueWatching } from '../../features/learning/ContinueWatching';
 import { Text, View } from 'react-native';
 import { AppLink } from '../../components/AppLink';
 import { Screen } from '../../components/Screen';
@@ -12,13 +13,13 @@ export default function HomeScreen() {
       <Text style={styles.text}>
         Riding courses and your training notes in one place.
       </Text>
+      <ContinueWatching />
       <View style={styles.panel}>
         <Text accessibilityRole="header" style={styles.subtitle}>
           Courses
         </Text>
         <Text style={styles.text}>
-          The first courses are being prepared. You’ll be able to save them and
-          track your progress here.
+          Browse courses in dressage, jumping, groundwork and horse care.
         </Text>
         <AppLink href="/courses" label="Browse courses" />
       </View>

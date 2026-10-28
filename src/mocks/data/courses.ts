@@ -1,16 +1,16 @@
 import type { Course, Lesson } from '../../types/course.ts';
+import { demoVideos } from './videos.ts';
 import { trainers } from './trainers.ts';
 
-function lessons(
-  courseId: string,
-  entries: [string, string, number][],
-): Lesson[] {
-  return entries.map(([title, description, durationSeconds], index) => ({
+function lessons(courseId: string, entries: [string, string][]): Lesson[] {
+  return entries.map(([title, description], index) => ({
     id: `${courseId}-${index + 1}`,
     title,
     description,
-    durationSeconds,
-    videoUrl: null,
+    durationSeconds: demoVideos[index % demoVideos.length].durationSeconds,
+    videoUrl: demoVideos[index % demoVideos.length].url,
+    videoSourceUrl: demoVideos[index % demoVideos.length].sourceUrl,
+    videoCredit: demoVideos[index % demoVideos.length].credit,
   }));
 }
 
@@ -31,17 +31,14 @@ export const courses: Course[] = [
       [
         'Find your neutral position',
         'Look at your alignment and notice where you hold tension.',
-        420,
       ],
       [
         'Follow the walk',
         'Practise following the movement through your hips and back.',
-        540,
       ],
       [
         'Your first sitting trot exercises',
         'Work on short stretches of sitting trot with breaks.',
-        600,
       ],
     ]),
   },
@@ -59,17 +56,14 @@ export const courses: Course[] = [
       [
         'Prepare before you ask',
         'Plan the transition and check your rhythm first.',
-        480,
       ],
       [
         'Walk to trot and back',
         'Use a simple exercise to make your aids more consistent.',
-        660,
       ],
       [
         'Keep balance in canter transitions',
         'Build transitions into a short schooling pattern.',
-        720,
       ],
     ]),
   },
@@ -87,17 +81,14 @@ export const courses: Course[] = [
       [
         'Introduce a single pole',
         'Begin with one pole at walk and keep your line simple.',
-        360,
       ],
       [
         'Find a steady trot',
         'Ride a short line of poles with a consistent approach.',
-        540,
       ],
       [
         'Put the exercise together',
         'Link the pole exercise with a large circle and a change of rein.',
-        600,
       ],
     ]),
   },
@@ -115,17 +106,14 @@ export const courses: Course[] = [
       [
         'Walk the line',
         'Break down the approach, landing and next turn before riding.',
-        480,
       ],
       [
         'Ride a related distance',
         'Observe the canter and compare different approaches.',
-        780,
       ],
       [
         'Review a short course',
         'Put the lines together and reflect on each round.',
-        840,
       ],
     ]),
   },
@@ -143,17 +131,14 @@ export const courses: Course[] = [
       [
         'Start with leading',
         'Notice your position and practise walking together.',
-        420,
       ],
       [
         'Ask for a quiet halt',
         'Make your stop signal clear and allow time for a response.',
-        480,
       ],
       [
         'Change direction together',
         'Use a few simple turns to practise consistency.',
-        540,
       ],
     ]),
   },
@@ -171,17 +156,14 @@ export const courses: Course[] = [
       [
         'Organise your grooming kit',
         'Get familiar with the tools in a basic grooming kit.',
-        360,
       ],
       [
         'Prepare for a ride',
         'Follow a simple grooming and equipment preparation routine.',
-        600,
       ],
       [
         'Finish your stable visit',
         'Put equipment away and review the session in your notes.',
-        420,
       ],
     ]),
   },
