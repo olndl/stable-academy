@@ -17,7 +17,7 @@ interface LessonRef {
   courseId: string;
   lessonId: string;
 }
-interface LearningState {
+export interface LearningState {
   statuses: Partial<Record<string, CourseStatus>>;
   progress: Partial<Record<string, CourseProgressState>>;
   lastWatched: LessonRef | null;

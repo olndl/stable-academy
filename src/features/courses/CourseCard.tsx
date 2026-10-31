@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../store/hooks';
 import { CourseProgress } from '../learning/CourseProgress';
 import { AppLink } from '../../components/AppLink';
 import { Image, StyleSheet, Text, View } from 'react-native';
@@ -5,6 +6,7 @@ import type { Course } from '../../types/course';
 import { disciplineLabels, levelLabels } from './labels';
 
 export function CourseCard({ course }: { course: Course }) {
+  const review = useAppSelector((state) => state.reviews.byCourse[course.id]);
   const minutes = Math.ceil(
     course.lessons.reduce((sum, lesson) => sum + lesson.durationSeconds, 0) /
       60,
@@ -31,6 +33,9 @@ export function CourseCard({ course }: { course: Course }) {
           {course.lessons.length} lessons · {minutes} min
         </Text>
         <CourseProgress course={course} />
+        {review && (
+          <Text style={styles.meta}>Your rating: {review.rating}/5</Text>
+        )}
         <AppLink
           href={{
             pathname: '/courses/[courseId]',

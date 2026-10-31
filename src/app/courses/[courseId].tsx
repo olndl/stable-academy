@@ -1,3 +1,4 @@
+import { CourseReview } from '../../features/reviews/CourseReview';
 import { useAppSelector } from '../../store/hooks';
 import { CourseProgress } from '../../features/learning/CourseProgress';
 import { formatTime } from '../../features/learning/progress';
@@ -44,7 +45,7 @@ export default function CourseScreen() {
   const course = query.data;
 
   return (
-    <Screen>
+    <Screen avoidKeyboard>
       <Stack.Screen options={{ title: course.title }} />
       <Text accessibilityRole="header" style={styles.title}>
         {course.title}
@@ -64,6 +65,7 @@ export default function CourseScreen() {
         lessonIds={course.lessons.map((lesson) => lesson.id)}
       />
       <CourseProgress course={course} />
+      <CourseReview key={course.id} courseId={course.id} />
       <View style={styles.panel}>
         <Text accessibilityRole="header" style={styles.subtitle}>
           Trainer: {course.trainer.name}

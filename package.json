@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "0.1.0",
   "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@reduxjs/toolkit": "^2.13.0",
     "@tanstack/react-query": "^5.105.0",
     "expo": "~58.0.19",
@@ -46,9 +47,10 @@
     "format:check": "prettier --check .",
     "test:api": "node --experimental-strip-types --test tests/course-api.test.mjs && node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-api.test.mjs",
     "test:catalog": "node --experimental-strip-types --import ./tests/native-fetch-globals.mjs --test tests/course-query.test.mjs",
-    "test": "npm run test:api && npm run test:catalog && npm run test:filters && npm run test:learning",
+    "test": "npm run test:api && npm run test:catalog && npm run test:filters && npm run test:learning && npm run test:notes",
     "test:filters": "node --experimental-strip-types --test tests/course-filters.test.mjs",
-    "test:learning": "node --experimental-strip-types --test tests/learning.test.mjs tests/progress.test.mjs"
+    "test:learning": "node --experimental-strip-types --test tests/learning.test.mjs tests/progress.test.mjs",
+    "test:notes": "node --experimental-strip-types --test tests/notes.test.mjs tests/persistence.test.mjs"
   },
   "private": true,
   "engines": {
