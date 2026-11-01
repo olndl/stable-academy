@@ -7,7 +7,8 @@
 - Use a pull request for each feature. Don't replace PRs with a local merge. Keep PR descriptions to one or two short, casual sentences. No formal template or long checklist.
 - Keep actual commit dates. Don't create future or backdated commits.
 - Keep the UI simple: system fonts, standard controls, plain layouts. No decorative graphics or marketing copy.
-- Run lint, format:check, typecheck and build before committing code. Add relevant tests as features arrive.
+- Run lint, format:check, typecheck and build before committing code.
+- Keep a small, focused test suite: main user flows and important failure cases. Avoid duplicate scenarios, trivial assertions and tests that only mirror the implementation. Do not aim for a test count.
 - Use Expo-compatible versions for native libraries (expo install).
 - Update docs/progress.md after each session. Record verification limits honestly.
 - Product copy is in English. Planning notes can be in Russian.
