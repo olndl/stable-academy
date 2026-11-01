@@ -1,8 +1,12 @@
+import { KeyboardLayout } from './KeyboardLayout';
 import type { PropsWithChildren } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-export function Screen({ children }: PropsWithChildren) {
-  return (
+export function Screen({
+  children,
+  avoidKeyboard = false,
+}: PropsWithChildren<{ avoidKeyboard?: boolean }>) {
+  const content = (
     <ScrollView
       style={styles.screen}
       contentContainerStyle={styles.content}
@@ -12,6 +16,7 @@ export function Screen({ children }: PropsWithChildren) {
       {children}
     </ScrollView>
   );
+  return avoidKeyboard ? <KeyboardLayout>{content}</KeyboardLayout> : content;
 }
 
 const styles = StyleSheet.create({
